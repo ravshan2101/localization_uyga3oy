@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:localization_uyga3oy/pagetwo.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,7 +30,11 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
-      home: const MyHomePage(),
+      routes: {
+        'home': (context) => const MyHomePage(),
+        'two': (context) => Pagee()
+      },
+      initialRoute: 'home',
     );
   }
 }
@@ -60,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Expanded(
                     child: MaterialButton(
                   onPressed: () {
-                    context.locale = Locale('en', 'US');
+                    context.setLocale(Locale('en', 'US'));
                   },
                   height: 50,
                   color: Colors.green,
@@ -72,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Expanded(
                     child: MaterialButton(
                   onPressed: () {
-                    context.locale = Locale('ko', 'KR');
+                    context.setLocale(Locale('ko', 'KR'));
                   },
                   height: 50,
                   color: Colors.red,
@@ -84,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Expanded(
                     child: MaterialButton(
                   onPressed: () {
-                    context.locale = Locale('ja', 'JP');
+                    context.setLocale(Locale('ja', 'JP'));
                   },
                   height: 50,
                   color: Colors.blue,
@@ -95,6 +100,9 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        Navigator.of(context).pushNamed('two');
+      }),
     );
   }
 }
